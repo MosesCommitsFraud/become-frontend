@@ -16,11 +16,9 @@ export default function LandingPageComponent() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Handle canvas resizing and scaling for high-DPI screens
     const handleResize = () => {
       const scale = window.devicePixelRatio || 1;
 
-      // Set canvas dimensions
       canvas.width = window.innerWidth * scale;
       canvas.height = window.innerHeight * scale;
       ctx.scale(scale, scale);
@@ -28,45 +26,30 @@ export default function LandingPageComponent() {
 
     handleResize();
 
-    // Wave generation logic (can be fine-tuned)
     const waves = Array.from({ length: 8 }, (_, i) => ({
-      y: canvas.height * ((i + 1) / 10), // Spread waves vertically
-      length: 0.003, // Wave length for smooth curves
-      amplitude: 20 + Math.random() * 10, // Higher amplitude for better visibility
+      y: canvas.height * ((i + 1) / 10), // Spread the waves vertically
+      length: 0.003, // Adjust wave length for smoother curves
+      amplitude: 20 + Math.random() * 5, // Slightly higher amplitude for visibility
       speed: 0.0003 + Math.random() * 0.0001,
       offset: Math.random() * Math.PI * 2,
     }));
 
-    // Improved gradient handling
-    const createGradient = () => {
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
-      gradient.addColorStop(0, '#ffbf00'); // Yellow
-      gradient.addColorStop(0.5, '#f97636'); // Orange
-      gradient.addColorStop(1, '#ff007a'); // Pink
-      return gradient;
-    };
+    const gradientColors = ['#ffbf00', '#f97636', '#ff007a'];
 
     let animationFrameId: number;
 
-    // Animation logic with waves and gradient
     const animate = (time: number) => {
       ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
-      // Set gradient each frame to cover entire canvas
-      const gradient = createGradient();
-      ctx.fillStyle = gradient;
-      ctx.globalAlpha = 0.3; // Slightly higher visibility for the gradient
-
-      // Draw waves
       waves.forEach((wave) => {
         ctx.beginPath();
         ctx.moveTo(0, wave.y / window.devicePixelRatio);
 
-        for (let x = 0; x < canvas.width / window.devicePixelRatio; x += 4) {
+        for (let x = 0; x < canvas.width / window.devicePixelRatio; x += 3) {
           const dx = x * wave.length;
           let dy = Math.sin(dx + time * wave.speed + wave.offset) * wave.amplitude;
 
-          // Add complexity to the wave
+          // Add a secondary wave for more complex movement
           dy += Math.sin(dx * 1.5 + time * wave.speed * 0.8) * wave.amplitude * 0.5;
 
           ctx.lineTo(x, wave.y / window.devicePixelRatio + dy);
@@ -76,7 +59,15 @@ export default function LandingPageComponent() {
         ctx.lineTo(0, canvas.height / window.devicePixelRatio);
         ctx.closePath();
 
-        ctx.fill(); // Apply gradient fill to the waves
+        // Updated gradient creation logic
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+        gradientColors.forEach((color, i) => {
+          gradient.addColorStop(i / (gradientColors.length - 1), color);
+        });
+
+        ctx.fillStyle = gradient;
+        ctx.globalAlpha = 0.1; // Set gradient visibility
+        ctx.fill();
       });
 
       animationFrameId = requestAnimationFrame(animate);
