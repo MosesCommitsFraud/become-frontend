@@ -165,7 +165,7 @@ export default function LandingPageComponent() {
               <h1 className="relative z-10 text-8xl md:text-8xl font-bold text-black home-hero-heading">
                 ELEVATE YOUR LIFESTYLE BRAND
               </h1>
-              <div className="absolute inset-0 z-0 blur-xl bg-white opacity-50 rounded-lg"></div>
+              <div className="absolute inset-0 z-0 blur-2xl bg-white opacity-50 rounded-lg"></div>
               {/* Blurred background */}
             </div>
             <div className="mt-4 md:mt-8 flex justify-center">
