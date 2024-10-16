@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from './Logo.png';
 
 export default function LandingPageComponent() {
+  const [menuOpen, setMenuOpen] = useState(false); // State to manage menu visibility
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -87,37 +88,77 @@ export default function LandingPageComponent() {
         <canvas ref={canvasRef} className="absolute inset-0 z-0" />
 
         <header className="relative z-10 p-4 flex justify-between items-center">
-          <div style={{width: '200px', height: 'auto'}}> {/* Set desired width */}
+          <div className="w-32 md:w-48 h-auto"> {/* Adjust logo size */}
             <Image
                 src={logo}
                 alt="Logo"
                 layout="responsive"
-                width={2200}  // Original width of the image
-                height={800}  // Original height of the image
+                width={2200}
+                height={800}
             />
           </div>
-          <nav>
+
+          {/* Hamburger Menu Icon for Mobile */}
+          <div className="md:hidden">
+            <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="text-gray-800 focus:outline-none"
+            >
+              {/* Hamburger Icon */}
+              <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          {/* Navigation Menu for larger screens */}
+          <nav className="hidden md:flex space-x-4">
             <ul className="flex space-x-4">
               {['Home', 'Mission', 'Team', 'Impressum', 'Contact'].map((item) => (
                   <li key={item}>
                     <Link href={`#${item.toLowerCase()}`} className="text-gray-800 relative group">
                       {item}
-                      <span
-                          className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                      <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                     </Link>
                   </li>
               ))}
             </ul>
           </nav>
+
+          {/* Mobile Navigation Dropdown */}
+          {menuOpen && (
+              <nav className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 md:hidden">
+                <ul className="flex flex-col space-y-4">
+                  {['Home', 'Mission', 'Team', 'Impressum', 'Contact'].map((item) => (
+                      <li key={item}>
+                        <Link href={`#${item.toLowerCase()}`} className="text-gray-800 block" onClick={() => setMenuOpen(false)}>
+                          {item}
+                        </Link>
+                      </li>
+                  ))}
+                </ul>
+              </nav>
+          )}
         </header>
 
         <main className="relative z-10 flex-grow flex items-center justify-center px-4">
-          <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 text-center">
+          <div className="bg-white bg-opacity-80 p-4 md:p-8 rounded-lg shadow-lg">
+            <h1 className="text-2xl md:text-4xl font-bold text-gray-800 text-center">
               Elevate Your Lifestyle Brand To A New Level
             </h1>
-            <div className="mt-8 flex justify-center">
-              <button className="px-6 py-3 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white font-semibold rounded-full hover:shadow-lg transition-shadow duration-300">
+            <div className="mt-4 md:mt-8 flex justify-center">
+              <button className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white font-semibold rounded-full hover:shadow-lg transition-shadow duration-300 text-sm md:text-base">
                 Get Started
               </button>
             </div>
@@ -125,7 +166,7 @@ export default function LandingPageComponent() {
         </main>
 
         <footer className="relative z-10 p-4 text-center text-gray-600">
-          <p>&copy; 2024 BECOME Consulting. All rights reserved.</p>
+          <p className="text-xs md:text-sm">&copy; 2024 BECOME Consulting. All rights reserved.</p>
         </footer>
       </div>
   );
