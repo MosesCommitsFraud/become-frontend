@@ -159,11 +159,15 @@ export default function LandingPageComponent() {
         </header>
 
         {/* Main Content */}
-        <main className="relative z-10 flex-grow flex items-center justify-center px-4">
-          <div className="bg-white bg-opacity-80 p-4 md:p-8 rounded-lg shadow-lg">
-            <h1 className="text-2xl md:text-4xl font-bold text-gray-800 text-center">
-              Elevate Your Lifestyle Brand To A New Level
-            </h1>
+        <main className="relative z-10 flex-grow flex items-center justify-center">
+          <div className="text-center -mt-12 relative"> {/* Moved slightly above the center and made relative */}
+            <div className="relative inline-block">
+              <h1 className="relative z-10 text-8xl md:text-8xl font-bold text-black home-hero-heading">
+                ELEVATE YOUR LIFESTYLE BRAND
+              </h1>
+              <div className="absolute inset-0 z-0 blur-xl bg-white opacity-50 rounded-lg"></div>
+              {/* Blurred background */}
+            </div>
             <div className="mt-4 md:mt-8 flex justify-center">
               <button
                   className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white font-semibold rounded-full hover:shadow-lg transition-shadow duration-300 text-sm md:text-base">
