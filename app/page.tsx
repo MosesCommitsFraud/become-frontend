@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from './Logo.png';
 
 export default function LandingPageComponent() {
-  const [menuOpen, setMenuOpen] = useState(false); // State to manage menu visibility
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -16,13 +15,20 @@ export default function LandingPageComponent() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const handleResize = () => {
+      const scale = window.devicePixelRatio || 1;
 
-    const waves = Array.from({ length: 10 }, (_, i) => ({
-      y: canvas.height * ((i + 1) / 11),
-      length: 0.002,
-      amplitude: 15 + Math.random() * 5,
+      canvas.width = window.innerWidth * scale;
+      canvas.height = window.innerHeight * scale;
+      ctx.scale(scale, scale);
+    };
+
+    handleResize();
+
+    const waves = Array.from({ length: 7 }, (_, i) => ({
+      y: canvas.height * ((i + 1) / 8),
+      length: 0.005,  // Adjust wave length for smoother curves
+      amplitude: 10 + Math.random() * 10, // Lower amplitude for smoother appearance on mobile
       speed: 0.0002 + Math.random() * 0.0001,
       offset: Math.random() * Math.PI * 2,
     }));
@@ -32,33 +38,34 @@ export default function LandingPageComponent() {
     let animationFrameId: number;
 
     const animate = (time: number) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
       waves.forEach((wave) => {
         ctx.beginPath();
-        ctx.moveTo(0, wave.y);
+        ctx.moveTo(0, wave.y / window.devicePixelRatio);
 
-        for (let x = 0; x < canvas.width; x += 2) {
+        for (let x = 0; x < canvas.width / window.devicePixelRatio; x += 4) {
           const dx = x * wave.length;
           let dy = Math.sin(dx + time * wave.speed + wave.offset) * wave.amplitude;
 
           // Add a secondary wave for more complex movement
-          dy += Math.sin(dx * 2 + time * wave.speed * 1.5) * wave.amplitude * 0.5;
+          dy += Math.sin(dx * 1.5 + time * wave.speed * 0.8) * wave.amplitude * 0.4;
 
-          ctx.lineTo(x, wave.y + dy);
+          ctx.lineTo(x, wave.y / window.devicePixelRatio + dy);
         }
 
-        ctx.lineTo(canvas.width, canvas.height);
-        ctx.lineTo(0, canvas.height);
+        ctx.lineTo(canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+        ctx.lineTo(0, canvas.height / window.devicePixelRatio);
         ctx.closePath();
 
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        // Improved gradient
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width / window.devicePixelRatio, 0);
         gradientColors.forEach((color, i) => {
           gradient.addColorStop(i / (gradientColors.length - 1), color);
         });
 
         ctx.fillStyle = gradient;
-        ctx.globalAlpha = 0.05; // Make the waves very subtle
+        ctx.globalAlpha = 0.1; // Increased visibility for the gradient
         ctx.fill();
       });
 
@@ -66,14 +73,6 @@ export default function LandingPageComponent() {
     };
 
     animate(0);
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      waves.forEach((wave, index) => {
-        wave.y = canvas.height * ((index + 1) / 6);
-      });
-    };
 
     window.addEventListener('resize', handleResize);
 
@@ -97,32 +96,6 @@ export default function LandingPageComponent() {
                 height={800}
             />
           </div>
-
-          {/* Hamburger Menu Icon for Mobile */}
-          <div className="md:hidden">
-            <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="text-gray-800 focus:outline-none"
-            >
-              {/* Hamburger Icon */}
-              <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-          </div>
-
-          {/* Navigation Menu for larger screens */}
           <nav className="hidden md:flex space-x-4">
             <ul className="flex space-x-4">
               {['Home', 'Mission', 'Team', 'Impressum', 'Contact'].map((item) => (
@@ -135,21 +108,6 @@ export default function LandingPageComponent() {
               ))}
             </ul>
           </nav>
-
-          {/* Mobile Navigation Dropdown */}
-          {menuOpen && (
-              <nav className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 md:hidden">
-                <ul className="flex flex-col space-y-4">
-                  {['Home', 'Mission', 'Team', 'Impressum', 'Contact'].map((item) => (
-                      <li key={item}>
-                        <Link href={`#${item.toLowerCase()}`} className="text-gray-800 block" onClick={() => setMenuOpen(false)}>
-                          {item}
-                        </Link>
-                      </li>
-                  ))}
-                </ul>
-              </nav>
-          )}
         </header>
 
         <main className="relative z-10 flex-grow flex items-center justify-center px-4">
