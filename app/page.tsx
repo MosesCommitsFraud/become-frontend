@@ -18,8 +18,8 @@ export default function LandingPageComponent() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const waves = Array.from({ length: 13 }, (_, i) => ({
-      y: canvas.height * ((i + 1) / 14),
+    const waves = Array.from({ length: 10 }, (_, i) => ({
+      y: canvas.height * ((i + 1) / 11),
       length: 0.002,
       amplitude: 15 + Math.random() * 5,
       speed: 0.0002 + Math.random() * 0.0001,
@@ -33,7 +33,7 @@ export default function LandingPageComponent() {
     const animate = (time: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      waves.forEach((wave, index) => {
+      waves.forEach((wave) => {
         ctx.beginPath();
         ctx.moveTo(0, wave.y);
 
