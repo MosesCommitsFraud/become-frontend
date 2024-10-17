@@ -49,7 +49,7 @@ export default function Footer() {
 
             {/* Right Side: Menu Links and Contact Us */}
             <nav className="flex items-center space-x-8">
-                <Link href="#home"
+                <Link href="/"
                       className="text-white hover:text-gray-300 transition transform hover:translate-y-1 hover:bg-opacity-90">Home</Link>
                 <Link href="/about"
                       className="text-white hover:text-gray-300 transition transform hover:translate-y-1 hover:bg-opacity-90">About</Link>
