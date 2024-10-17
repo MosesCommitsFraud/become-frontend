@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator"
 
 
 export default function LandingPageComponent() {
-  const [menuOpen, setMenuOpen] = useState(false); // State for managing mobile menu visibility
+  const [menuOpen, setMenuOpen] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -30,9 +30,9 @@ export default function LandingPageComponent() {
     handleResize();
 
     const waves = Array.from({ length: 8 }, (_, i) => ({
-      y: canvas.height * ((i + 1) / 10), // Spread the waves vertically
-      length: 0.003, // Adjust wave length for smoother curves
-      amplitude: 20 + Math.random() * 5, // Slightly higher amplitude for visibility
+      y: canvas.height * ((i + 1) / 10),
+      length: 0.003,
+      amplitude: 20 + Math.random() * 5,
       speed: 0.0003 + Math.random() * 0.0001,
       offset: Math.random() * Math.PI * 2,
     }));
@@ -43,6 +43,8 @@ export default function LandingPageComponent() {
 
     const animate = (time: number) => {
       ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+
+      const gradientPosition = Math.sin(time * 0.0001) * canvas.width; // Moves gradient over time
 
       waves.forEach((wave) => {
         ctx.beginPath();
@@ -62,14 +64,14 @@ export default function LandingPageComponent() {
         ctx.lineTo(0, canvas.height / window.devicePixelRatio);
         ctx.closePath();
 
-        // Updated gradient creation logic
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+        // Moving gradient creation logic
+        const gradient = ctx.createLinearGradient(gradientPosition, 0, canvas.width / window.devicePixelRatio + gradientPosition, canvas.height / window.devicePixelRatio);
         gradientColors.forEach((color, i) => {
           gradient.addColorStop(i / (gradientColors.length - 1), color);
         });
 
         ctx.fillStyle = gradient;
-        ctx.globalAlpha = 0.1; // Set gradient visibility
+        ctx.globalAlpha = 0.2;
         ctx.fill();
       });
 
