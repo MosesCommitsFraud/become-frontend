@@ -48,16 +48,24 @@ export default function Header() {
 
                 {/* Navigation links next to the logo */}
                 <nav className="hidden md:flex space-x-6">
-                    {['Home', 'Mission', 'Team', 'Impressum', 'Contact'].map((item) => (
+                    {['Home', 'Mission', 'Team', 'Contact'].map((item) => (
                         <Link
                             key={item}
-                            href={item === 'Home' ? '/' : `#${item.toLowerCase()}`}
+                            href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
                             className={`relative group ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
                         >
                             {item}
                             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                         </Link>
                     ))}
+                    {/* Separate Link for Impressum */}
+                    <Link
+                        href="/impressum"
+                        className={`relative group ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
+                    >
+                        Impressum
+                        <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </Link>
                 </nav>
             </div>
 
@@ -106,10 +114,10 @@ export default function Header() {
             {menuOpen && (
                 <nav className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 md:hidden">
                     <ul className="flex flex-col space-y-4">
-                        {['Home', 'Mission', 'Team', 'Impressum', 'Contact'].map((item) => (
+                        {['Home', 'Mission', 'Team', 'Contact'].map((item) => (
                             <li key={item}>
                                 <Link
-                                    href={item === 'Home' ? '/' : `#${item.toLowerCase()}`}
+                                    href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
                                     className={`block ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
                                     onClick={() => setMenuOpen(false)}
                                 >
@@ -117,6 +125,15 @@ export default function Header() {
                                 </Link>
                             </li>
                         ))}
+                        <li>
+                            <Link
+                                href="/impressum"
+                                className={`block ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
+                                onClick={() => setMenuOpen(false)}
+                            >
+                                Impressum
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             )}
