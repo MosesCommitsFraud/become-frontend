@@ -59,7 +59,7 @@ export default function Footer() {
                       className="text-white hover:text-gray-300 transition transform hover:translate-y-1 hover:bg-opacity-90">Blog</Link>
 
                 {/* Contact Us Button with Gradient Shift from Left to Right */}
-                <Link href="#contact">
+                <Link href="/contact">
                     <button
                         className="px-4 py-2 bg-red-600 text-white font-semibold rounded-lg transition-all duration-300 bg-gradient-to-r from-red-600 to-red-600 hover:from-white hover:to-white hover:text-black">
                         Contact Us
