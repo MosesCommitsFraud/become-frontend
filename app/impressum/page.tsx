@@ -8,7 +8,7 @@ export default function Component() {
     return (
         <div className="container mx-auto px-4 py-8">
             <Header />
-            <Card className="w-full max-w-3xl mx-auto">
+            <Card className="w-full max-w-8xl mx-auto">
                 <CardHeader>
                     <CardTitle className="text-3xl font-bold">Impressum</CardTitle>
                 </CardHeader>

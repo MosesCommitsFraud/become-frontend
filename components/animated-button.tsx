@@ -12,29 +12,34 @@ export default function GetStartedButton() {
 
     const pathname = usePathname();
 
-    // Function to detect background brightness
-    const checkBackgroundColor = () => {
-        const backgroundColor = window.getComputedStyle(document.body).backgroundColor;
-        const rgb = backgroundColor.match(/\d+/g)?.map(Number);
-
-        if (rgb) {
-            const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
-            setIsDarkBackground(luminance < 0.5); // Set dark background if luminance is low
-        }
+    // Map paths to background color configurations
+    const backgroundColorMap = {
+        '/': 'light',  // Home page
+        '/mission': 'dark', // Example, can be dark
+        '/team': 'dark',  // Example, can be dark
+        '/contact': 'dark',  // Example, can be dark
+        '/impressum': 'light',  // Example, can be light
     };
 
     useEffect(() => {
-        checkBackgroundColor();
-        window.addEventListener('resize', checkBackgroundColor);
+        // Manually set background color based on the route, same as in the header
+        const backgroundType = backgroundColorMap[pathname] || 'light'; // Default to light if not specified
 
-        return () => window.removeEventListener('resize', checkBackgroundColor);
+        if (backgroundType === 'dark') {
+            setIsDarkBackground(true);
+        } else {
+            setIsDarkBackground(false);
+        }
     }, [pathname]);
 
-    // Hardcode text color and background on landing page
+    // Set button text and background colors dynamically
     const isLandingPage = pathname === '/';
     const buttonTextColor = isLandingPage ? 'text-black' : isDarkBackground ? 'text-white' : 'text-black';
     const buttonBgColor = isLandingPage ? 'bg-black' : isDarkBackground ? 'bg-white' : 'bg-black';
-    const arrowColor = isLandingPage ? 'text-white' : isDarkBackground ? 'text-black' : 'text-white'; // Change arrow color
+    const arrowColor = isLandingPage ? 'text-white' : isDarkBackground ? 'text-black' : 'text-white';
+
+    // Set hover color based on background and menu open state
+    const hoverTextColor = menuOpen ? (isDarkBackground ? 'text-black' : 'text-white') : buttonTextColor;
 
     return (
         <Link href="/contact">
@@ -62,18 +67,18 @@ export default function GetStartedButton() {
                 <AnimatePresence mode="wait">
                     {menuOpen ? (
                         <motion.div
-                            key="white-text"
-                            className="relative z-10 ml-12 mr-4 flex-grow text-center"
+                            key="hover-text"
+                            className={`relative z-10 ml-12 mr-4 flex-grow text-center ${hoverTextColor}`}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <span className="text-white font-extralight text-base">Get Started</span>
+                            <span className="font-extralight text-base">Get Started</span>
                         </motion.div>
                     ) : (
                         <motion.div
-                            key="black-text"
+                            key="default-text"
                             className={`relative z-10 ml-12 mr-4 flex-grow text-center ${buttonTextColor}`}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
