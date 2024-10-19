@@ -44,9 +44,11 @@ export default function LandingPageComponent() {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
+        let lastTime = 0;
+        let animationFrameId: number;
+
         const handleResize = () => {
             const scale = window.devicePixelRatio || 1;
-
             canvas.width = window.innerWidth * scale;
             canvas.height = window.innerHeight * scale;
             ctx.scale(scale, scale);
@@ -54,7 +56,7 @@ export default function LandingPageComponent() {
 
         handleResize();
 
-        const waves = Array.from({length: 8}, (_, i) => ({
+        const waves = Array.from({ length: 8 }, (_, i) => ({
             y: canvas.height * ((i + 1) / 10),
             length: 0.003,
             amplitude: 20 + Math.random() * 5,
@@ -64,9 +66,13 @@ export default function LandingPageComponent() {
 
         const gradientColors = ['#ffbf00', '#f97636', '#ff007a'];
 
-        let animationFrameId: number;
-
         const animate = (time: number) => {
+            if (time - lastTime < 1000 / 30) { // Update 30 times per second
+                animationFrameId = requestAnimationFrame(animate);
+                return;
+            }
+            lastTime = time;
+
             ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
             const gradientPosition = Math.sin(time * 0.0001) * canvas.width;
@@ -78,9 +84,7 @@ export default function LandingPageComponent() {
                 for (let x = 0; x < canvas.width / window.devicePixelRatio; x += 3) {
                     const dx = x * wave.length;
                     let dy = Math.sin(dx + time * wave.speed + wave.offset) * wave.amplitude;
-
                     dy += Math.sin(dx * 1.5 + time * wave.speed * 0.8) * wave.amplitude * 0.5;
-
                     ctx.lineTo(x, wave.y / window.devicePixelRatio + dy);
                 }
 
@@ -88,7 +92,12 @@ export default function LandingPageComponent() {
                 ctx.lineTo(0, canvas.height / window.devicePixelRatio);
                 ctx.closePath();
 
-                const gradient = ctx.createLinearGradient(gradientPosition, 0, canvas.width / window.devicePixelRatio + gradientPosition, canvas.height / window.devicePixelRatio);
+                const gradient = ctx.createLinearGradient(
+                    gradientPosition,
+                    0,
+                    canvas.width / window.devicePixelRatio + gradientPosition,
+                    canvas.height / window.devicePixelRatio
+                );
                 gradientColors.forEach((color, i) => {
                     gradient.addColorStop(i / (gradientColors.length - 1), color);
                 });
@@ -102,7 +111,6 @@ export default function LandingPageComponent() {
         };
 
         animate(0);
-
         window.addEventListener('resize', handleResize);
 
         return () => {
@@ -110,6 +118,30 @@ export default function LandingPageComponent() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+
+    const cardsData = [
+        {
+            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            title: 'E-Commerce Strategy',
+            description: 'Maximizing revenue growth through feasible sales strategies based on maturity evaluations and data-driven insights.',
+        },
+        {
+            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            title: 'PaaS Analysis & Setup',
+            description: 'Tailored platforms for businesses of any size, choosing scalable solutions with growth in mind.',
+        },
+        {
+            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            title: 'UX Optimization',
+            description: 'Establishing brand image through design adjustments and consistent visual perception.',
+        },
+        {
+            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            title: 'Lifestyle Marketing',
+            description: 'Creating clear, actionable marketing strategies tied to your brand’s image and long-term goals.',
+        },
+    ];
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50 relative overflow-hidden">
@@ -141,7 +173,8 @@ export default function LandingPageComponent() {
                     <div className="grid grid-cols-1 text-left">
 
                         {/* Rotating Phrases */}
-                        <div className="relative h-8 overflow-hidden mb-6 text-md text-white uppercase tracking-widest">
+                        <div
+                            className="relative h-8 overflow-hidden mb-6 text-md text-white uppercase tracking-widest mt-24">
                             {phrases.map((phrase, index) => (
                                 <motion.span
                                     key={index}
@@ -183,6 +216,37 @@ export default function LandingPageComponent() {
                             <span className="block mt-4">commerce has to offer.</span>
                         </motion.h1>
                     </div>
+                </div>
+            </section>
+            <section className="py-20 bg-black">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-[0px] max-w-7xl">
+                    {cardsData.map((card, index) => (
+                        <motion.div
+                            key={index}
+                            className="relative mb-16 flex flex-col items-center"  // Flexbox to center cards
+                            initial={{opacity: 0, y: 100}}
+                            whileInView={{opacity: 1, y: 0}}
+                            transition={{duration: 0.8}}
+                            viewport={{once: true}}
+                            style={{
+                                marginTop: index % 2 === 0 ? '0px' : '240px', // Offset alternate cards
+                            }}
+                        >
+                            {/* Centered card image */}
+                            <div className="text-left w-[550px]">  {/* Fixed width for the image and text */}
+                                <img
+                                    src={card.image}
+                                    alt={card.title}
+                                    className="rounded-lg w-full h-[800px] object-cover mb-4"
+                                />
+                            </div>
+                            {/* Title and description beneath the image */}
+                            <div className="w-[550px] pl-4">  {/* Added left padding (pl-2 for 8px) */}
+                                <h3 className="text-2xl font-semibold mb-2 text-white">{card.title}</h3>  {/* Increased text size */}
+                                <p className="text-lg text-gray-300">{card.description}</p>  {/* Larger description text */}
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
             <Footer/>
