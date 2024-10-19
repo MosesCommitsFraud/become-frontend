@@ -1,6 +1,5 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
@@ -8,11 +7,9 @@ export default function Component() {
     return (
         <div className="container mx-auto px-4 py-8 pt-24">
             <Header />
-            <Card className="w-full max-w-8xl mx-auto">
-                <CardHeader>
-                    <CardTitle className="text-3xl font-bold">Impressum</CardTitle>
-                </CardHeader>
-                <CardContent className="prose prose-sm max-w-none">
+            <div className="w-full max-w-8xl mx-auto mb-24"> {/* Added 'mb-12' for space */}
+                <div className="text-3xl font-bold mb-4">Impressum</div>
+                <div className="prose prose-sm max-w-none">
                     <h2 className="text-xl font-semibold mt-4">Angaben gemäß § 5 TMG</h2>
                     <p>
                         Moritz Schäfer<br />
@@ -129,8 +126,8 @@ export default function Component() {
                     <p>
                         Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
                     </p>
-                </CardContent>
-            </Card>
+                </div>
+            </div>
             <Footer />
         </div>
     )

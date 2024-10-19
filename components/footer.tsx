@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 export default function Footer() {
     return (
         <footer
-            className="relative z-10 fixed bottom-5 left-0 right-0 w-10/12 mx-auto bg-black bg-opacity-60 backdrop-blur-md text-white p-2 flex justify-between items-center rounded-xl shadow-lg">
+            className="z-10 fixed bottom-5 left-0 right-0 w-10/12 mx-auto bg-black bg-opacity-60 backdrop-blur-sm text-white p-2 flex justify-between items-center rounded-xl shadow-lg">
             {/* Left Side: Logo and Spacer */}
             <div className="flex items-center space-x-4">
                 {/* Clickable Logo */}

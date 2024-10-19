@@ -36,7 +36,7 @@ export default function Header() {
 
     return (
         <header
-            className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4"
+            className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center p-4"
             style={{paddingLeft: '175px', paddingRight: '175px', backgroundColor: 'transparent'}}
         >
             <div className="flex items-center space-x-8">
