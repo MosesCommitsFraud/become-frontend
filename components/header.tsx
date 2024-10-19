@@ -25,7 +25,7 @@ export default function Header() {
 
     useEffect(() => {
         // Manually set background color based on the route
-        const backgroundType = backgroundColorMap[pathname] || 'light'; // Default to light if not specified
+        const backgroundType = backgroundColorMap[pathname as keyof typeof backgroundColorMap] || 'light'; // Default to light if not specified
 
         if (backgroundType === 'dark') {
             setIsDarkBackground(true);

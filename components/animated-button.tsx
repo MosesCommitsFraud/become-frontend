@@ -13,7 +13,7 @@ export default function GetStartedButton() {
     const pathname = usePathname();
 
     // Map paths to background color configurations
-    const backgroundColorMap = {
+    const backgroundColorMap: { [key: string]: string } = {
         '/': 'light',  // Home page
         '/mission': 'dark', // Example, can be dark
         '/team': 'dark',  // Example, can be dark
@@ -23,7 +23,7 @@ export default function GetStartedButton() {
 
     useEffect(() => {
         // Manually set background color based on the route, same as in the header
-        const backgroundType = backgroundColorMap[pathname] || 'light'; // Default to light if not specified
+        const backgroundType = backgroundColorMap[pathname as keyof typeof backgroundColorMap] || 'light'; // Default to light if not specified
 
         if (backgroundType === 'dark') {
             setIsDarkBackground(true);
