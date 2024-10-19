@@ -35,7 +35,10 @@ export default function Header() {
     }, [pathname]);
 
     return (
-        <header className="relative z-10 flex justify-between items-center p-4" style={{ paddingLeft: '175px', paddingRight: '175px' }}> {/* 3cm padding on both sides */}
+        <header
+            className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4"
+            style={{paddingLeft: '175px', paddingRight: '175px', backgroundColor: 'transparent'}}
+        >
             <div className="flex items-center space-x-8">
                 {/* Logo on the left */}
                 <div className="w-32 md:w-48 h-auto">
@@ -54,18 +57,20 @@ export default function Header() {
                         <Link
                             key={item}
                             href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                            className={`relative group ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
+                            className={`relative group ${pathname === '/' ? 'text-black' : isDarkBackground ? 'text-white' : 'text-gray-800'}`}
                         >
                             {item}
-                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                            <span
+                                className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                         </Link>
                     ))}
                     <Link
                         href="/impressum"
-                        className={`relative group ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
+                        className={`relative group ${pathname === '/' ? 'text-black' : isDarkBackground ? 'text-white' : 'text-gray-800'}`}
                     >
                         Impressum
-                        <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                        <span
+                            className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                     </Link>
                 </nav>
             </div>
@@ -73,20 +78,20 @@ export default function Header() {
             <div className="flex items-center space-x-8">
                 <Link
                     href="/whats-new"
-                    className={`text-gray-800 ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')} hover:text-gray-500 transition transform hover:translate-y-0.5 hover:bg-opacity-90`}
+                    className={`text-gray-800 ${pathname === '/' ? 'text-black' : isDarkBackground ? 'text-white' : 'text-gray-800'} hover:text-gray-500 transition transform hover:translate-y-0.5 hover:bg-opacity-90`}
                 >
                     What&#39;s New
                 </Link>
                 <Link
                     href="/packages"
-                    className={`text-gray-800 ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')} hover:text-gray-500 transition transform hover:translate-y-0.5 hover:bg-opacity-90`}
+                    className={`text-gray-800 ${pathname === '/' ? 'text-black' : isDarkBackground ? 'text-white' : 'text-gray-800'} hover:text-gray-500 transition transform hover:translate-y-0.5 hover:bg-opacity-90`}
                 >
                     Packages
                 </Link>
 
                 {/* Updated Get Started button */}
-                <CoolButton
-                />
+                <CoolButton/>
+
                 <div className="md:hidden">
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
@@ -117,7 +122,7 @@ export default function Header() {
                             <li key={item}>
                                 <Link
                                     href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                                    className={`block ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
+                                    className={`block ${pathname === '/' ? 'text-black' : isDarkBackground ? 'text-white' : 'text-gray-800'}`}
                                     onClick={() => setMenuOpen(false)}
                                 >
                                     {item}
@@ -127,7 +132,7 @@ export default function Header() {
                         <li>
                             <Link
                                 href="/impressum"
-                                className={`block ${pathname === '/' ? 'text-black' : (isDarkBackground ? 'text-white' : 'text-gray-800')}`}
+                                className={`block ${pathname === '/' ? 'text-black' : isDarkBackground ? 'text-white' : 'text-gray-800'}`}
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Impressum
@@ -137,5 +142,6 @@ export default function Header() {
                 </nav>
             )}
         </header>
+
     );
 }

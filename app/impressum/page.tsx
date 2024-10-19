@@ -6,7 +6,7 @@ import Footer from '@/components/footer'
 
 export default function Component() {
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 pt-24">
             <Header />
             <Card className="w-full max-w-8xl mx-auto">
                 <CardHeader>
