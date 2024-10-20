@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import Footer2 from '@/components/footer2'
 
 export default function Component() {
     const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export default function Component() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        const mailtoLink = `mailto:hello@aries.com?subject=Contact Form Submission&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0AMessage: ${formData.message}`
+        const mailtoLink = `mailto:contact@become-consulting.de?subject=Contact Form Submission&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0AMessage: ${formData.message}`
         window.location.href = mailtoLink
     }
 
@@ -154,6 +155,7 @@ export default function Component() {
                 </div>
             </motion.main>
             <Footer />
+            <Footer2 />
         </div>
     )
 }

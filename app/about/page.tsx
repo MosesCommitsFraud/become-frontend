@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import Footer2 from '@/components/footer2'
 
 export default function AboutPage() {
     const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
@@ -101,6 +102,7 @@ export default function AboutPage() {
 
             {/* Footer Component */}
             <Footer />
+            <Footer2 />
         </div>
     );
 }

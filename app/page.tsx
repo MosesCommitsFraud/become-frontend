@@ -5,6 +5,7 @@ import {useEffect, useRef, useState} from 'react';
 import {motion} from 'framer-motion';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import Footer2 from '@/components/footer2'
 
 export default function LandingPageComponent() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -250,6 +251,7 @@ export default function LandingPageComponent() {
                 </div>
             </section>
             <Footer/>
+            <Footer2/>
         </div>
     );
 }
