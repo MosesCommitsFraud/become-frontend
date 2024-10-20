@@ -56,7 +56,7 @@ export default function Component() {
                 animate="visible"
                 variants={containerVariants}
             >
-                <div className="max-w-6xl mx-auto pt-24">
+                <div className="max-w-6xl mx-auto pt-24 mb-32">
                     <motion.h1 className="text-4xl lg:text-6xl font-bold mb-8" variants={itemVariants}>
                         Contact Us
                     </motion.h1>

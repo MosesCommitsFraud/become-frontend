@@ -41,7 +41,7 @@ export default function AboutPage() {
             <Header />
 
             {/* Main Content */}
-            <div className="flex-grow flex items-center">
+            <div className="flex-grow flex items-center mt-64 mb-48">
                 <div className="container mx-auto px-4">
                     <div className="relative h-8 overflow-hidden mb-4 text-sm uppercase tracking-widest">
                         {phrases.map((phrase, index) => (

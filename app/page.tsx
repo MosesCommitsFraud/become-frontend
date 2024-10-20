@@ -249,9 +249,10 @@ export default function LandingPageComponent() {
                         </motion.div>
                     ))}
                 </div>
+                <Footer2/>
             </section>
             <Footer/>
-            <Footer2/>
+
         </div>
     );
 }

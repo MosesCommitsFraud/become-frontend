@@ -58,8 +58,7 @@ export default function TeamPage() {
     }, [])
 
     return (
-
-        <div className="min-h-screen bg-black text-white py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+        <div className="min-h-screen bg-black text-white py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-between">
             <Header />
             <style jsx global>{`
                 @keyframes fadeIn {
@@ -102,8 +101,11 @@ export default function TeamPage() {
                     ))}
                 </div>
             </div>
-            <Footer />
-            <Footer2 />
+            {/* Ensure footers are stacked below the content */}
+            <div className="mt-12">
+                <Footer />
+                <Footer2 />
+            </div>
         </div>
     )
 }
