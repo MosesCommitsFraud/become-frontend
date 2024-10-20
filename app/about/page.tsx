@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import Footer2 from '@/components/footer2'
 
 export default function AboutPage() {
     const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
@@ -36,7 +35,7 @@ export default function AboutPage() {
     }, [phrases.length]);
 
     return (
-        <div className="min-h-screen bg-gray-400 text-white overflow-hidden flex flex-col">
+        <div className="min-h-screen bg-black text-white overflow-hidden flex flex-col">
             {/* Header Component */}
             <Header />
 
@@ -102,7 +101,6 @@ export default function AboutPage() {
 
             {/* Footer Component */}
             <Footer />
-            <Footer2 />
         </div>
     );
 }

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-import Footer2 from '@/components/footer2'
+
 
 const packages = [
     {
@@ -195,7 +195,6 @@ export default function PricingPage() {
                 </FadeInWhenVisible>
             </div>
             <Footer />
-            <Footer2 />
         </div>
     )
 }

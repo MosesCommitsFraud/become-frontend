@@ -5,7 +5,7 @@ import {useEffect, useRef, useState} from 'react';
 import {motion} from 'framer-motion';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import Footer2 from '@/components/footer2'
+
 
 export default function LandingPageComponent() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -145,8 +145,8 @@ export default function LandingPageComponent() {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 relative overflow-hidden">
-            <canvas ref={canvasRef} className="absolute inset-0 z-0"/>
+        <div className="min-h-screen flex flex-col bg-black relative overflow-hidden">  {/* Set the main background to black */}
+            <canvas ref={canvasRef} className="absolute inset-0 z-0 bg-white"/>  {/* Set the canvas background to white */}
             <Header/>
 
             {/* Main content area with enough padding to avoid overlap */}
@@ -167,6 +167,7 @@ export default function LandingPageComponent() {
                     </div>
                 </div>
             </main>
+
             <section className="py-20 bg-black relative z-10">
                 <div className="max-w-6xl mx-auto px-4 lg:px-0"> {/* Ensures alignment with common container */}
 
@@ -249,10 +250,8 @@ export default function LandingPageComponent() {
                         </motion.div>
                     ))}
                 </div>
-                <Footer2/>
             </section>
             <Footer/>
-
         </div>
     );
 }

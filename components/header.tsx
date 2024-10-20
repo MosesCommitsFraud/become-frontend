@@ -20,7 +20,8 @@ export default function Header() {
         '/mission': 'dark', // Example, can be dark
         '/team': 'dark',  // Example, can be dark
         '/contact': 'dark',  // Example, can be light
-        '/impressum': 'light',  // Example, can be light
+        '/impressum': 'dark',  // Example, can be light
+        '/about': 'dark',  // Example, can be light
     };
 
     useEffect(() => {

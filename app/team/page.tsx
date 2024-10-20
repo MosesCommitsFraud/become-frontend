@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Mail } from 'lucide-react'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-import Footer2 from '@/components/footer2'
+
 
 const teamMembers = [
     {
@@ -104,7 +104,6 @@ export default function TeamPage() {
             {/* Ensure footers are stacked below the content */}
             <div className="mt-12">
                 <Footer />
-                <Footer2 />
             </div>
         </div>
     )

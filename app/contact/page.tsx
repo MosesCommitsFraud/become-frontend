@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-import Footer2 from '@/components/footer2'
 
 export default function Component() {
     const [formData, setFormData] = useState({
@@ -155,7 +154,6 @@ export default function Component() {
                 </div>
             </motion.main>
             <Footer />
-            <Footer2 />
         </div>
     )
 }
