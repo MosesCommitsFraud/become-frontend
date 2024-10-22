@@ -67,15 +67,15 @@ export default function Component() {
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold mb-2">Email</h3>
-                                <p>hello@aries.com</p>
+                                <p>contact@become-consulting.de</p>
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold mb-2">Phone</h3>
-                                <p>+1 (555) 000-0000</p>
+                                <p>+49 163 1737743</p>
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold mb-2">Office</h3>
-                                <p>123 Sample St, Sydney NSW 2000 AU</p>
+                                <p>Coblitzallee 1-9, 68163 Mannheim</p>
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold mb-2">Business Hours</h3>

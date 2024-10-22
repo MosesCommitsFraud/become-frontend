@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from 'react';
 import logo2 from './logo2.png';
 import logo3 from './logo3.png';
 import { Separator } from "@/components/ui/separator";
-import { Youtube, Instagram, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Instagram, Linkedin } from 'lucide-react';
 import CoolButton from '@/components/dark-animated-button';
 
 export default function CombinedFooter() {
@@ -156,29 +156,23 @@ export default function CombinedFooter() {
                         </div>
                     </div>
 
-                    <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                    <div
+                        className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
                         <div className="text-sm text-gray-400">
-                            Copyright © Design & Developed by Moritz Schäfer | Powered by Vercel
+                            Disclaimer: This is not a real company, but a student project designed to emulate the
+                            operations of a business for educational purposes only.<br/>
+                            Any references to products, services, or business practices are fictional and intended
+                            solely for learning and academic evaluation.
                         </div>
                         <div className="flex space-x-4 mt-4 md:mt-0">
-                            <Link href="#" className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
-                                <Youtube size={20} />
-                                <span className="sr-only">YouTube</span>
-                            </Link>
-                            <Link href="#" className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
-                                <Instagram size={20} />
+                            <Link href="https://www.instagram.com/become.consulting?igsh=MWxsYjJqenByeWRqeA=="
+                                  className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
+                                <Instagram size={20}/>
                                 <span className="sr-only">Instagram</span>
                             </Link>
-                            <Link href="#" className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
-                                <Facebook size={20} />
-                                <span className="sr-only">Facebook</span>
-                            </Link>
-                            <Link href="#" className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
-                                <Twitter size={20} />
-                                <span className="sr-only">Twitter</span>
-                            </Link>
-                            <Link href="#" className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
-                                <Linkedin size={20} />
+                            <Link href="#"
+                                  className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
+                                <Linkedin size={20}/>
                                 <span className="sr-only">LinkedIn</span>
                             </Link>
                         </div>
