@@ -170,7 +170,7 @@ export default function CombinedFooter() {
                                 <Instagram size={20}/>
                                 <span className="sr-only">Instagram</span>
                             </Link>
-                            <Link href="#"
+                            <Link href="https://www.linkedin.com/company/become-ecommerce-consulting"
                                   className="text-white hover:text-gray-300 transition transform hover:translate-y-0.5 hover:bg-opacity-90">
                                 <Linkedin size={20}/>
                                 <span className="sr-only">LinkedIn</span>
