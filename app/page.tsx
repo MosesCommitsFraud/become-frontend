@@ -1,15 +1,62 @@
-// app/LandingPageComponent.tsx
+// app/page.tsx
 'use client';
 
-import {useEffect, useRef, useState} from 'react';
-import {motion} from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ShoppingCart, Database, Layout, TrendingUp, BarChart3, PenTool, Share2, Smartphone } from 'lucide-react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
+// GridItem component for the card layout
+interface GridItemProps {
+    area: string;
+    icon: React.ReactNode;
+    title: string;
+    description: React.ReactNode;
+}
+
+const GridItem = ({ area, icon, title, description }: GridItemProps) => {
+    return (
+        <motion.li
+            className={`min-h-[14rem] list-none ${area}`}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+        >
+            <div className="relative h-full rounded-2xl border border-gray-800 p-2 md:rounded-3xl md:p-3 hover:border-gray-700 transition-colors duration-300">
+                <GlowingEffect
+                    blur={0}
+                    borderWidth={3}
+                    spread={80}
+                    glow={true}
+                    disabled={false}
+                    proximity={64}
+                    inactiveZone={0.01}
+                />
+                <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 bg-black bg-opacity-80 md:p-6">
+                    <div className="relative flex flex-1 flex-col justify-between gap-3">
+                        <div className="w-fit rounded-lg border border-gray-700 p-2 bg-gradient-to-br from-[#ffbf00] via-[#f97636] to-[#ff007a] bg-opacity-20">
+                            {icon}
+                        </div>
+                        <div className="space-y-3">
+                            <h3 className="pt-0.5 text-xl leading-tight font-semibold md:text-2xl text-balance text-white">
+                                {title}
+                            </h3>
+                            <p className="font-sans text-sm md:text-base text-gray-300">
+                                {description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </motion.li>
+    );
+};
 
 export default function LandingPageComponent() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-
     const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
     const phrases = [
@@ -68,7 +115,7 @@ export default function LandingPageComponent() {
         const gradientColors = ['#ffbf00', '#f97636', '#ff007a'];
 
         const animate = (time: number) => {
-            if (time - lastTime < 1000 / 30) { // Update 30 times per second
+            if (time - lastTime < 1000 / 30) {
                 animationFrameId = requestAnimationFrame(animate);
                 return;
             }
@@ -120,33 +167,60 @@ export default function LandingPageComponent() {
         };
     }, []);
 
-
     const cardsData = [
         {
-            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            icon: <ShoppingCart className="h-4 w-4 text-white" />,
             title: 'E-Commerce Strategy',
             description: 'Maximizing revenue growth through feasible sales strategies based on maturity evaluations and data-driven insights.',
+            area: "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         },
         {
-            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            icon: <Database className="h-4 w-4 text-white" />,
             title: 'PaaS Analysis & Setup',
             description: 'Tailored platforms for businesses of any size, choosing scalable solutions with growth in mind.',
+            area: "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         },
         {
-            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            icon: <Layout className="h-4 w-4 text-white" />,
             title: 'UX Optimization',
             description: 'Establishing brand image through design adjustments and consistent visual perception.',
+            area: "md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         },
         {
-            image: 'https://via.placeholder.com/400',  // Replace with actual image URL
+            icon: <TrendingUp className="h-4 w-4 text-white" />,
             title: 'Lifestyle Marketing',
-            description: 'Creating clear, actionable marketing strategies tied to your brand’s image and long-term goals.',
+            description: 'Creating clear, actionable marketing strategies tied to your brand\'s image and long-term goals.',
+            area: "md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
         },
+        {
+            icon: <BarChart3 className="h-4 w-4 text-white" />,
+            title: 'Data Analytics',
+            description: 'Transform customer interactions into actionable insights that drive growth and enhance customer loyalty.',
+            area: "md:[grid-area:3/1/4/7] xl:[grid-area:2/8/3/13]"
+        },
+        {
+            icon: <PenTool className="h-4 w-4 text-white" />,
+            title: 'Brand Identity',
+            description: 'Develop a cohesive visual language that resonates with your target audience and sets you apart from competitors.',
+            area: "md:[grid-area:3/7/4/13] xl:[grid-area:3/1/4/5]"
+        },
+        {
+            icon: <Share2 className="h-4 w-4 text-white" />,
+            title: 'Social Media Strategy',
+            description: 'Build meaningful connections with your audience through targeted content and engagement strategies.',
+            area: "md:[grid-area:4/1/5/7] xl:[grid-area:3/5/4/9]"
+        },
+        {
+            icon: <Smartphone className="h-4 w-4 text-white" />,
+            title: 'Mobile Optimization',
+            description: 'Create seamless mobile experiences that keep your customers engaged wherever they are.',
+            area: "md:[grid-area:4/7/5/13] xl:[grid-area:3/9/4/13]"
+        }
     ];
 
     return (
-        <div className="min-h-screen flex flex-col bg-black relative overflow-hidden">  {/* Set the main background to black */}
-            <canvas ref={canvasRef} className="absolute inset-0 z-0 bg-white"/>  {/* Set the canvas background to white */}
+        <div className="min-h-screen flex flex-col bg-black relative overflow-hidden">
+            <canvas ref={canvasRef} className="absolute inset-0 z-0 bg-white"/>
             <Header/>
 
             {/* Main content area with enough padding to avoid overlap */}
@@ -169,14 +243,9 @@ export default function LandingPageComponent() {
             </main>
 
             <section className="py-20 bg-black relative z-10">
-                <div className="max-w-6xl mx-auto px-4 lg:px-0"> {/* Ensures alignment with common container */}
-
-                    {/* Shared grid layout for rotating phrases and text */}
+                <div className="max-w-6xl mx-auto px-4 lg:px-0">
                     <div className="grid grid-cols-1 text-left">
-
-                        {/* Rotating Phrases */}
-                        <div
-                            className="relative h-8 overflow-hidden mb-6 text-md text-white uppercase tracking-widest mt-24">
+                        <div className="relative h-8 overflow-hidden mb-6 text-md text-white uppercase tracking-widest mt-24">
                             {phrases.map((phrase, index) => (
                                 <motion.span
                                     key={index}
@@ -194,9 +263,8 @@ export default function LandingPageComponent() {
                             ))}
                         </div>
 
-                        {/* Main Text */}
                         <motion.h1
-                            className="text-4xl md:text-6xl font-extralight text-white mb-6 text-left" // Left-align text with common container
+                            className="text-4xl md:text-6xl font-extralight text-white mb-6 text-left"
                             initial={{opacity: 0, y: 20}}
                             animate={{opacity: 1, y: 0}}
                             transition={{duration: 1.5, ease: "easeOut"}}
@@ -204,14 +272,14 @@ export default function LandingPageComponent() {
                             <span>Our goal is to </span>
 
                             <span className="relative inline-block">
-                    <span className="relative z-10">give your lifestyle brand</span>
-                    <motion.span
-                        className="absolute left-0 w-full h-[140%] top-[-20%] bg-[#ff007a] -skew-x-12 z-0" // Adjusted highlight height
-                        initial={{scaleX: 0, originX: 0}}
-                        animate={{scaleX: 1}}
-                        transition={{delay: 0.5, duration: 1, ease: "easeInOut"}}
-                    />
-                </span>
+                                <span className="relative z-10">give your lifestyle brand</span>
+                                <motion.span
+                                    className="absolute left-0 w-full h-[140%] top-[-20%] bg-[#ff007a] -skew-x-12 z-0"
+                                    initial={{scaleX: 0, originX: 0}}
+                                    animate={{scaleX: 1}}
+                                    transition={{delay: 0.5, duration: 1, ease: "easeInOut"}}
+                                />
+                            </span>
 
                             <span className="block mt-4">the representation it deserves by  </span>
                             <span className="block mt-4">establishing the newest technologies digital </span>
@@ -220,35 +288,26 @@ export default function LandingPageComponent() {
                     </div>
                 </div>
             </section>
+
+            {/* Grid Layout with GlowingEffect Cards */}
             <section className="py-20 bg-black">
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-[0px] max-w-7xl">
-                    {cardsData.map((card, index) => (
-                        <motion.div
-                            key={index}
-                            className="relative mb-16 flex flex-col items-center"  // Flexbox to center cards
-                            initial={{opacity: 0, y: 100}}
-                            whileInView={{opacity: 1, y: 0}}
-                            transition={{duration: 0.8}}
-                            viewport={{once: true}}
-                            style={{
-                                marginTop: index % 2 === 0 ? '0px' : '240px', // Offset alternate cards
-                            }}
-                        >
-                            {/* Centered card image */}
-                            <div className="text-left w-[550px]">  {/* Fixed width for the image and text */}
-                                <img
-                                    src={card.image}
-                                    alt={card.title}
-                                    className="rounded-lg w-full h-[800px] object-cover mb-4"
-                                />
-                            </div>
-                            {/* Title and description beneath the image */}
-                            <div className="w-[550px] pl-4">  {/* Added left padding (pl-2 for 8px) */}
-                                <h3 className="text-2xl font-semibold mb-2 text-white">{card.title}</h3>  {/* Increased text size */}
-                                <p className="text-lg text-gray-300">{card.description}</p>  {/* Larger description text */}
-                            </div>
-                        </motion.div>
-                    ))}
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <motion.ul
+                        className="grid grid-cols-1 grid-rows-none gap-6 md:grid-cols-12 md:grid-rows-4 lg:gap-6 xl:max-h-[52rem] xl:grid-rows-3"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, staggerChildren: 0.2 }}
+                    >
+                        {cardsData.map((card, index) => (
+                            <GridItem
+                                key={index}
+                                area={card.area}
+                                icon={card.icon}
+                                title={card.title}
+                                description={card.description}
+                            />
+                        ))}
+                    </motion.ul>
                 </div>
             </section>
             <Footer/>
