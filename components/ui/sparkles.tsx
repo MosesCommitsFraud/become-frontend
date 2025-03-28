@@ -80,7 +80,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                                     enable: false,
                                     mode: "repulse",
                                 },
-                                enable: true,
+                                enable: true
                             },
                             modes: {
                                 push: {
