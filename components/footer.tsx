@@ -3,9 +3,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import logo3 from './logo3.png';
 import { Instagram, Linkedin } from 'lucide-react';
+import logo3 from './logo3.png';
 import CoolButton from '@/components/dark-animated-button';
+import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 
 export default function CombinedFooter() {
     return (
@@ -21,9 +22,14 @@ export default function CombinedFooter() {
                         </p>
                         <div className="flex space-x-4">
                             <CoolButton />
-                            <Link href="#" className="text-white px-4 py-2 rounded-full text-sm font-medium border border-white inline-flex items-center justify-center mt-1.5" style={{ width: '120px', height: '40px' }}>
-                                Our Portfolio
-                            </Link>
+                            <HoverBorderGradient
+                                containerClassName="rounded-full"
+                                as="a"
+                                className="bg-black text-white flex items-center space-x-2"
+                                onClick={() => window.location.href = '#'}
+                            >
+                                <span>Our Portfolio</span>
+                            </HoverBorderGradient>
                         </div>
                     </div>
 
