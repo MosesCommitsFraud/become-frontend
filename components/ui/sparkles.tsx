@@ -18,6 +18,7 @@ type ParticlesProps = {
     particleColor?: string;
     particleDensity?: number;
 };
+
 export const SparklesCore = (props: ParticlesProps) => {
     const {
         id,
@@ -29,7 +30,9 @@ export const SparklesCore = (props: ParticlesProps) => {
         particleColor,
         particleDensity,
     } = props;
+
     const [init, setInit] = useState(false);
+
     useEffect(() => {
         initParticlesEngine(async (engine) => {
             await loadSlim(engine);
@@ -37,6 +40,7 @@ export const SparklesCore = (props: ParticlesProps) => {
             setInit(true);
         });
     }, []);
+
     const controls = useAnimation();
 
     const particlesLoaded = async (container?: Container) => {
@@ -51,6 +55,7 @@ export const SparklesCore = (props: ParticlesProps) => {
     };
 
     const generatedId = useId();
+
     return (
         <motion.div animate={controls} className={cn("opacity-0", className)}>
             {init && (
@@ -80,7 +85,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                                     enable: false,
                                     mode: "repulse",
                                 },
-                                enable: true
+                                // Fixed: Removed 'enable: true' from here as it's not a valid property at this level
                             },
                             modes: {
                                 push: {
