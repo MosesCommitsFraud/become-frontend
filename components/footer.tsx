@@ -22,14 +22,14 @@ export default function CombinedFooter() {
                         </p>
                         <div className="flex space-x-4">
                             <CoolButton />
-                            <HoverBorderGradient
-                                containerClassName="rounded-full"
-                                as="a"
-                                className="bg-black text-white flex items-center space-x-2"
-                                onClick={() => window.location.href = '#'}
-                            >
-                                <span>Our Portfolio</span>
-                            </HoverBorderGradient>
+                            <Link href="/portfolio">
+                                <HoverBorderGradient
+                                    containerClassName="rounded-full"
+                                    className="bg-black text-white flex items-center space-x-2"
+                                >
+                                    <span>Our Portfolio</span>
+                                </HoverBorderGradient>
+                            </Link>
                         </div>
                     </div>
 

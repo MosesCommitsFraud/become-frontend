@@ -20,6 +20,8 @@ export default function GetStartedButton() {
         '/contact': 'dark',  // Example, can be dark
         '/impressum': 'dark',  // Example, can be light
         '/about': 'dark',  // Example, can be light
+        '/packages': 'dark',  // Added packages page as dark
+        '/portfolio': 'dark',  // Added portfolio page as dark
     };
 
     useEffect(() => {

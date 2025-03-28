@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { usePathname } from 'next/navigation';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { cn } from "@/lib/utils";
@@ -50,7 +51,7 @@ const CustomTracingBeam = ({
             ref={ref}
             className={cn("relative mx-auto h-full w-full max-w-4xl", className)}
         >
-            <div className="absolute top-3 -left-4 md:-left-20">
+            <div className="absolute top-3 -left-4 md:-left-20 pointer-events-none">
                 <motion.div
                     transition={{
                         duration: 0.2,
@@ -123,6 +124,29 @@ const CustomTracingBeam = ({
         </motion.div>
     );
 };
+
+// Header dark mode setup
+function SetupHeaderStyles() {
+    const pathname = usePathname();
+
+    useEffect(() => {
+        // Add style override to ensure header text is white on portfolio page
+        const style = document.createElement('style');
+        style.innerHTML = `
+      /* Override header styles for portfolio page */
+      body[data-route="/portfolio"] header a { color: white !important; }
+    `;
+        document.head.appendChild(style);
+        document.body.setAttribute('data-route', pathname);
+
+        return () => {
+            document.head.removeChild(style);
+            document.body.removeAttribute('data-route');
+        };
+    }, [pathname]);
+
+    return null;
+}
 
 // Portfolio projects data
 const portfolioProjects = [
@@ -233,14 +257,15 @@ const portfolioProjects = [
 
 export default function PortfolioPage() {
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="min-h-screen bg-black text-white relative">
+            <SetupHeaderStyles />
             <Header />
 
-            <div className="pt-24 pb-20">
-                <CustomTracingBeam className="px-6">
-                    <div className="max-w-2xl mx-auto antialiased pt-4 relative">
+            <div className="pt-24 pb-20 relative">
+                <CustomTracingBeam className="px-6 relative z-10 pointer-events-none">
+                    <div className="max-w-2xl mx-auto antialiased pt-4 relative pointer-events-auto">
                         {/* Page Header */}
-                        <div className="text-center mb-16">
+                        <div className="text-center mb-16 relative z-20">
                             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] bg-clip-text text-transparent">
                                 Our Work
                             </h1>
@@ -251,7 +276,7 @@ export default function PortfolioPage() {
 
                         {/* Portfolio Projects */}
                         {portfolioProjects.map((project, index) => (
-                            <div key={`project-${index}`} className="mb-16">
+                            <div key={`project-${index}`} className="mb-16 relative z-20">
                                 <h2 className="bg-gradient-to-r from-[#ffbf00] to-[#ff007a] rounded-full text-sm w-fit px-4 py-1 mb-4">
                                     {project.badge}
                                 </h2>
@@ -274,7 +299,7 @@ export default function PortfolioPage() {
                                 {/* Call to action button after each project */}
                                 {index < portfolioProjects.length - 1 && (
                                     <div className="mt-8 mb-12 border-b border-gray-800 pb-12">
-                                        <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-6 py-3 rounded-full hover:opacity-90 transition duration-300">
+                                        <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-6 py-3 rounded-full hover:opacity-90 transition duration-300 relative z-50">
                                             View Case Study
                                         </button>
                                     </div>
@@ -283,10 +308,10 @@ export default function PortfolioPage() {
                         ))}
 
                         {/* Contact CTA */}
-                        <div className="mt-16 text-center">
+                        <div className="mt-16 text-center relative z-20">
                             <h3 className="text-2xl font-bold mb-4">Ready to transform your brand?</h3>
                             <p className="mb-6 text-gray-300">Let&#39;s create something amazing together.</p>
-                            <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-8 py-4 rounded-full hover:opacity-90 transition duration-300 text-lg font-semibold">
+                            <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-8 py-4 rounded-full hover:opacity-90 transition duration-300 text-lg font-semibold relative z-50">
                                 Contact Us
                             </button>
                         </div>
