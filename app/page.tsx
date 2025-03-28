@@ -1,12 +1,13 @@
 // app/page.tsx
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Database, Layout, TrendingUp, BarChart3, PenTool, Share2, Smartphone } from 'lucide-react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
+import { FlipWordsDemo } from '@/components/flip-words-demo';
 
 // GridItem component for the card layout
 interface GridItemProps {
@@ -57,33 +58,6 @@ const GridItem = ({ area, icon, title, description }: GridItemProps) => {
 
 export default function LandingPageComponent() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-
-    const phrases = [
-        "become future-ready",
-        "become resilient",
-        "become successful",
-        "become multi-generational",
-        "become innovative",
-        "become customer-centric",
-        "become competitive",
-        "become visible",
-        "become data-driven",
-        "become agile",
-        "become insight-powered",
-        "become influential",
-        "become market-leading",
-    ];
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentPhraseIndex((prevIndex) =>
-                prevIndex === phrases.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, [phrases.length]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -245,23 +219,8 @@ export default function LandingPageComponent() {
             <section className="py-20 bg-black relative z-10">
                 <div className="max-w-6xl mx-auto px-4 lg:px-0">
                     <div className="grid grid-cols-1 text-left">
-                        <div className="relative h-8 overflow-hidden mb-6 text-md text-white uppercase tracking-widest mt-24">
-                            {phrases.map((phrase, index) => (
-                                <motion.span
-                                    key={index}
-                                    className="absolute h-8"
-                                    initial={{opacity: 0, y: 20}}
-                                    animate={{
-                                        opacity: index === currentPhraseIndex ? 1 : 0,
-                                        y: index === currentPhraseIndex ? 0 : 20
-                                    }}
-                                    transition={{duration: 1.5, ease: 'easeOut'}}
-                                    style={{display: index === currentPhraseIndex ? 'block' : 'none'}}
-                                >
-                                    {phrase}
-                                </motion.span>
-                            ))}
-                        </div>
+                        {/* Using FlipWordsDemo component for the phrases */}
+                        <FlipWordsDemo />
 
                         <motion.h1
                             className="text-4xl md:text-6xl font-extralight text-white mb-6 text-left"
