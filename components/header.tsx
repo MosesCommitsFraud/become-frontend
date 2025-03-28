@@ -22,6 +22,7 @@ export default function Header() {
         '/contact': 'dark',  // Example, can be light
         '/impressum': 'dark',  // Example, can be light
         '/about': 'dark',  // Example, can be light
+        '/packages': 'dark',  // Added packages page as dark
     };
 
     useEffect(() => {
@@ -143,6 +144,5 @@ export default function Header() {
                 </nav>
             )}
         </header>
-
     );
 }
