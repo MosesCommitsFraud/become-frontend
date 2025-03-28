@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Mail } from 'lucide-react'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-
+import { SparklesCore } from '@/components/ui/sparkles'
 
 const teamMembers = [
     {
@@ -66,8 +66,41 @@ export default function TeamPage() {
                     to { opacity: 1; transform: translateY(0); }
                 }
             `}</style>
-            <div className="max-w-7xl mx-auto">
-                <h1 className="text-4xl font-bold text-center mb-12 mt-24">Our Team</h1>
+
+            <div className="max-w-7xl mx-auto w-full">
+                {/* Sparkles Header Section */}
+                <div className="relative h-64 w-full mb-12 flex flex-col items-center justify-center overflow-hidden">
+                    {/* Title with only the gradient underline */}
+                    <h1 className="text-6xl font-bold text-center relative z-20">
+                        <span className="relative inline-block">
+                            Our Team
+                        </span>
+                    </h1>
+
+                    {/* Single gradient line */}
+                    <div className="w-full h-32 relative mt-2">
+                        {/* Pink gradient line only - increased width */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bg-gradient-to-r from-transparent via-[#ff007a] to-transparent h-[2px] w-96 blur-sm" />
+                        <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bg-gradient-to-r from-transparent via-[#ff007a] to-transparent h-px w-96" />
+
+                        {/* SparklesCore component - increased horizontal spread */}
+                        <div className="absolute inset-0 top-8 w-full">
+                            <SparklesCore
+                                background="transparent"
+                                minSize={0.4}
+                                maxSize={1}
+                                particleDensity={60}
+                                className="w-full h-full"
+                                particleColor="#FFFFFF"
+                                speed={0.5}
+                            />
+                        </div>
+
+                        {/* Radial Gradient - adjusted for wider area */}
+                        <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(450px_200px_at_top,transparent_20%,black)]"></div>
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
                     {teamMembers.map((member, index) => (
                         <div
@@ -101,6 +134,7 @@ export default function TeamPage() {
                     ))}
                 </div>
             </div>
+
             {/* Ensure footers are stacked below the content */}
             <div className="mt-12">
                 <Footer />
