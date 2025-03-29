@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 // Import images directly
 import blueCanobyLogo from '@/public/bluecanoby.png';
 import frankeLogo from '@/public/frankelogobgremoved.png';
-import discussImage from '@/public/discuss.JPG';
-import groupImage from '@/public/group.JPG';
+import discussImage from '@/public/discuss.jpg';
+import groupImage from '@/public/group.jpg';
 import pic1Image from '@/public/pic1.png';
 import pic2Image from '@/public/pic2.png';
 
