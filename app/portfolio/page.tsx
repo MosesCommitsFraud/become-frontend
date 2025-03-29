@@ -151,107 +151,103 @@ function SetupHeaderStyles() {
 // Portfolio projects data
 const portfolioProjects = [
     {
-        title: "E-Commerce Replatforming",
+        title: "E-Commerce Strategy & Implementation",
         description: (
             <>
                 <p>
-                    We helped a luxury lifestyle brand transition from their legacy
-                    e-commerce platform to a modern, scalable solution that increased
-                    their conversion rate by 32% and reduced page load times by 65%.
+                    We helped Blue Canoby transition from a physical-only store to an omnichannel
+                    business with a strategic e-commerce implementation that expanded their market
+                    reach beyond their single Ludwigshafen location.
                 </p>
                 <p>
-                    The brand was struggling with an outdated platform that couldn&#39;t
-                    handle their growing product catalog and was providing a subpar
-                    mobile experience. Our team conducted a thorough analysis of their
-                    needs and recommended a headless commerce approach using Next.js
-                    for the frontend and a modern API-first commerce platform for the backend.
+                    After conducting a comprehensive SWOT analysis and maturity assessment, we determined
+                    that while Blue Canoby excelled in customer relationships and product quality, they needed
+                    significant improvement in their online presence.
                 </p>
                 <p>
-                    We implemented a custom design system that maintained the brand&#39;s
-                    luxurious aesthetic while significantly improving the user experience.
-                    The new platform included advanced filtering, personalization features,
-                    and seamless integration with their inventory management system.
+                    We evaluated multiple e-commerce platforms and recommended Shopify as the optimal
+                    solution based on its user-friendliness, design capabilities, and integrated POS
+                    features that connected their physical and online stores.
                 </p>
             </>
         ),
-        badge: "E-Commerce",
+        badge: "E-Commerce Strategy",
         image: "/api/placeholder/1000/600",
+        logo: "/api/placeholder/200/100",
     },
     {
-        title: "Social Media Strategy Overhaul",
+        title: "Brand Development & Customer Analysis",
         description: (
             <>
                 <p>
-                    A premium accessories brand was struggling to stand out on social media
-                    despite having high-quality products. We developed and executed a comprehensive
-                    social media strategy that increased engagement by 78% and drove a 45%
-                    increase in traffic from social channels.
+                    Through detailed customer analysis, we identified three primary customer personas for
+                    Blue Canoby: individuals seeking relaxation, those looking for pain relief, and wellness
+                    enthusiasts interested in natural alternatives.
                 </p>
                 <p>
-                    Our approach involved creating a consistent visual language across all
-                    platforms, developing a content calendar that balanced product showcases
-                    with lifestyle content, and implementing targeted ad campaigns to reach
-                    new audiences.
+                    Our Limbic Type analysis revealed that Blue Canoby's customers strongly valued balance,
+                    security, and health. Based on these insights, we developed a brand identity focused on
+                    trust, quality, and medical efficacy.
                 </p>
                 <p>
-                    We also established partnerships with micro-influencers in the fashion
-                    and lifestyle space, resulting in authentic endorsements that resonated
-                    with the brand&#39;s target demographic.
+                    We selected a blue and white color scheme that differentiated them from competitors who
+                    typically used green in their branding, reinforcing their positioning as a medically-focused,
+                    trustworthy advisor rather than just a retailer.
                 </p>
             </>
         ),
-        badge: "Marketing",
+        badge: "Brand Strategy",
         image: "/api/placeholder/1000/600",
+        logo: "/api/placeholder/200/100",
     },
     {
-        title: "Brand Identity Refresh",
+        title: "Revenue Growth & Optimization",
         description: (
             <>
                 <p>
-                    We collaborated with a wellness brand to refresh their visual identity
-                    while maintaining the equity they had built over a decade in business.
-                    The result was a modern, cohesive brand system that could flex across
-                    digital and physical touchpoints.
+                    We implemented targeted sales optimization strategies to drive revenue growth for
+                    Blue Canoby's new e-commerce channel.
                 </p>
                 <p>
-                    The process began with stakeholder interviews and market research to
-                    identify what aspects of the brand needed to be preserved and what could
-                    evolve. We created a new logo that maintained recognizable elements while
-                    introducing a cleaner, more contemporary aesthetic.
+                    Our approach included first-time buyer incentives, guest checkout options to reduce
+                    cart abandonment, and strategically designed product bundles (such as CBD oil combined
+                    with hemp tea) to increase average order value.
                 </p>
                 <p>
-                    The refreshed identity included a new color palette, typography system,
-                    and photography style that better communicated the brand&#39;s premium
-                    positioning and commitment to quality.
+                    To build customer loyalty, we implemented a subscription model for regular customers
+                    and created a VIP program that offered exclusive benefits, establishing a more predictable
+                    revenue stream and improving customer lifetime value.
                 </p>
             </>
         ),
-        badge: "Branding",
+        badge: "Sales Strategy",
         image: "/api/placeholder/1000/600",
+        logo: "/api/placeholder/200/100",
     },
     {
-        title: "Analytics Implementation",
+        title: "Multi-Channel Marketing Strategy",
         description: (
             <>
                 <p>
-                    A multi-brand retailer was making decisions based on incomplete data.
-                    We implemented a comprehensive analytics solution that provided actionable
-                    insights and led to a 28% increase in average order value.
+                    Recognizing the challenges of marketing CBD products on traditional platforms due to
+                    content restrictions, we created a strategic approach that balanced educational content
+                    with compliance requirements.
                 </p>
                 <p>
-                    Our team began by auditing their existing analytics setup and identifying
-                    gaps in data collection. We then implemented a robust tracking framework
-                    that captured key customer behaviors across their website and mobile app.
+                    We improved Blue Canoby's social media presence across Instagram and Facebook with a
+                    content mix that combined educational material about CBD benefits with lifestyle content
+                    that subtly promoted products.
                 </p>
                 <p>
-                    We created custom dashboards that visualized critical metrics and set up
-                    automated reporting to keep stakeholders informed. The solution included
-                    advanced features like cohort analysis and customer lifetime value modeling.
+                    Additionally, we developed an email marketing program with segmented content for different
+                    customer personas and implemented a content strategy centered on education and trust-building,
+                    including information about product certificates and CBD spectrum options.
                 </p>
             </>
         ),
-        badge: "Analytics",
+        badge: "Marketing Strategy",
         image: "/api/placeholder/1000/600",
+        logo: "/api/placeholder/200/100",
     },
 ];
 
@@ -270,8 +266,70 @@ export default function PortfolioPage() {
                                 Our Work
                             </h1>
                             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                                See how we&#39;ve helped lifestyle brands transform their digital presence and achieve remarkable results.
+                                Discover how we've helped businesses transform their digital presence and achieve remarkable results.
                             </p>
+                        </div>
+
+                        {/* Client Logo Section */}
+                        <div className="mb-16 text-center">
+                            <h2 className="text-xl font-semibold mb-6 text-gray-200">Trusted By</h2>
+                            <div className="flex justify-center items-center space-x-12 mb-12">
+                                <div className="w-32 h-16 bg-gray-800 rounded-md flex items-center justify-center">
+                                    <Image
+                                        src="/api/placeholder/120/60"
+                                        alt="Blue Canoby logo"
+                                        width={120}
+                                        height={60}
+                                        className="object-contain"
+                                    />
+                                </div>
+                                <div className="w-32 h-16 bg-gray-800 rounded-md flex items-center justify-center">
+                                    <Image
+                                        src="/api/placeholder/120/60"
+                                        alt="Client 2 logo"
+                                        width={120}
+                                        height={60}
+                                        className="object-contain"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Client Spotlight */}
+                        <div className="mb-16 relative z-20">
+                            <h2 className="bg-gradient-to-r from-[#ffbf00] to-[#ff007a] text-center rounded-full text-sm w-fit mx-auto px-4 py-1 mb-4">
+                                Client Spotlight
+                            </h2>
+                            <p className={twMerge("text-3xl font-bold mb-6 text-white text-center")}>
+                                Blue Canoby: CBD Retail Transformation
+                            </p>
+                            <div className="flex justify-center mb-10">
+                                <Image
+                                    src="/api/placeholder/1000/400"
+                                    alt="Blue Canoby store"
+                                    height="400"
+                                    width="1000"
+                                    className="rounded-lg object-cover"
+                                />
+                            </div>
+                            <div className="prose prose-lg prose-invert mx-auto">
+                                <p>
+                                    Blue Canoby is a specialized CBD retailer focused on providing high-quality,
+                                    legal CBD products with an emphasis on medical benefits and expert consultation.
+                                    We helped them transition from a single physical location to a successful
+                                    omnichannel business with a strong brand identity.
+                                </p>
+                                <div className="bg-gray-900 p-6 rounded-lg mt-8 mb-8">
+                                    <h3 className="text-xl font-bold mb-4 text-gray-100">Project Highlights</h3>
+                                    <ul className="space-y-2">
+                                        <li>E-commerce strategy and implementation</li>
+                                        <li>Brand development based on customer value analysis</li>
+                                        <li>Multi-channel marketing with compliance navigation</li>
+                                        <li>Revenue optimization through targeted sales strategies</li>
+                                        <li>Integration between physical store and online presence</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Portfolio Projects */}
@@ -296,21 +354,59 @@ export default function PortfolioPage() {
                                     {project.description}
                                 </div>
 
-                                {/* Call to action button after each project */}
+                                {/* Divider line between projects */}
                                 {index < portfolioProjects.length - 1 && (
-                                    <div className="mt-8 mb-12 border-b border-gray-800 pb-12">
-                                        <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-6 py-3 rounded-full hover:opacity-90 transition duration-300 relative z-50">
-                                            View Case Study
-                                        </button>
-                                    </div>
+                                    <div className="mt-8 mb-12 border-b border-gray-800 pb-12"></div>
                                 )}
                             </div>
                         ))}
 
+                        {/* Results Summary */}
+                        <div className="mb-16 bg-gray-900 p-8 rounded-xl relative z-20">
+                            <h3 className="text-2xl font-bold mb-6 text-center">Key Outcomes</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="bg-gray-800 p-6 rounded-lg text-center">
+                                    <p className="text-lg font-bold text-white mb-2">Expanded Market Reach</p>
+                                    <p className="text-gray-300">Beyond single physical location</p>
+                                </div>
+                                <div className="bg-gray-800 p-6 rounded-lg text-center">
+                                    <p className="text-lg font-bold text-white mb-2">Strengthened Brand Identity</p>
+                                    <p className="text-gray-300">Trust-focused differentiation</p>
+                                </div>
+                                <div className="bg-gray-800 p-6 rounded-lg text-center">
+                                    <p className="text-lg font-bold text-white mb-2">Improved Customer Retention</p>
+                                    <p className="text-gray-300">Through subscription models</p>
+                                </div>
+                                <div className="bg-gray-800 p-6 rounded-lg text-center">
+                                    <p className="text-lg font-bold text-white mb-2">Optimized Shipping</p>
+                                    <p className="text-gray-300">Better costs and delivery times</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Testimonial */}
+                        <div className="mb-16 relative z-20">
+                            <div className="relative">
+                                <div className="absolute -top-6 -left-6 text-6xl text-[#f97636]">"</div>
+                                <div className="bg-gray-900 p-8 rounded-lg relative">
+                                    <p className="italic text-gray-300 mb-6">
+                                        The team at BECOME transformed our business completely. Their strategic approach to e-commerce not only expanded our market reach but also reinforced our brand values of quality and expert consultation. What impressed us most was their deep understanding of our unique challenges with CBD marketing and their creative solutions to overcome them.
+                                    </p>
+                                    <div className="flex items-center">
+                                        <div className="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
+                                        <div>
+                                            <p className="font-semibold">Tim Lanninger</p>
+                                            <p className="text-sm text-gray-400">Owner, Blue Canoby</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* Contact CTA */}
                         <div className="mt-16 text-center relative z-20">
                             <h3 className="text-2xl font-bold mb-4">Ready to transform your brand?</h3>
-                            <p className="mb-6 text-gray-300">Let&#39;s create something amazing together.</p>
+                            <p className="mb-6 text-gray-300">Let's create something amazing together.</p>
                             <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-8 py-4 rounded-full hover:opacity-90 transition duration-300 text-lg font-semibold relative z-50">
                                 Contact Us
                             </button>
