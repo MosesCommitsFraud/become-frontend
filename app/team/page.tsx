@@ -8,39 +8,39 @@ import { SparklesCore } from '@/components/ui/sparkles'
 
 const teamMembers = [
     {
-        name: 'John Doe',
-        title: 'CEO & Founder',
-        email: 'john@example.com',
+        name: 'Robin Kühn',
+        title: 'Sales Manager',
+        email: 'robin.kuehn@become-consulting.de',
         image: '/placeholder.svg?height=400&width=300'
     },
     {
-        name: 'Jane Smith',
-        title: 'Creative Director',
-        email: 'jane@example.com',
-        image: '/placeholder.svg?height=400&width=300'
-    },
-    {
-        name: 'Mike Johnson',
-        title: 'Lead Developer',
-        email: 'mike@example.com',
-        image: '/placeholder.svg?height=400&width=300'
-    },
-    {
-        name: 'Emily Brown',
-        title: 'UX Designer',
-        email: 'emily@example.com',
-        image: '/placeholder.svg?height=400&width=300'
-    },
-    {
-        name: 'Chris Lee',
-        title: 'Marketing Specialist',
-        email: 'chris@example.com',
-        image: '/placeholder.svg?height=400&width=300'
-    },
-    {
-        name: 'Sarah Taylor',
+        name: 'Anna Kneidl',
         title: 'Project Manager',
-        email: 'sarah@example.com',
+        email: 'anna.kneidl@become-consulting.de',
+        image: '/placeholder.svg?height=400&width=300'
+    },
+    {
+        name: 'Felix Bretz',
+        title: 'Enterprise Architect',
+        email: 'felix.bretz@become-consulting.de',
+        image: '/placeholder.svg?height=400&width=300'
+    },
+    {
+        name: 'Moritz Schäfer',
+        title: 'Developer',
+        email: 'moritz.schaefer@become-consulting.de',
+        image: '/placeholder.svg?height=400&width=300'
+    },
+    {
+        name: 'Laura Küchler',
+        title: 'Customer Success Partner',
+        email: 'laura.kuechler@become-consulting.de',
+        image: '/placeholder.svg?height=400&width=300'
+    },
+    {
+        name: 'Tim Philipp',
+        title: 'Portfolio Manager',
+        email: 'tim.philipp@become-consulting.de',
         image: '/placeholder.svg?height=400&width=300'
     }
 ]
