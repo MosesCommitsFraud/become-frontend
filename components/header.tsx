@@ -56,7 +56,7 @@ export default function Header() {
 
                 {/* Navigation links next to the logo */}
                 <nav className="hidden md:flex space-x-6">
-                    {['Home', 'Mission', 'Team', 'Contact'].map((item) => (
+                    {['Home', 'About', 'Team', 'Contact'].map((item) => (
                         <Link
                             key={item}
                             href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
