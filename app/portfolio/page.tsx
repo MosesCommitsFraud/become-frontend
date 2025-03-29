@@ -2,12 +2,20 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { usePathname } from 'next/navigation';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { cn } from "@/lib/utils";
+
+// Import images directly
+import blueCanobyLogo from '@/public/bluecanoby.png';
+import frankeLogo from '@/public/frankelogobgremoved.png';
+import discussImage from '@/public/discuss.jpg';
+import groupImage from '@/public/group.jpg';
+import pic1Image from '@/public/pic1.png';
+import pic2Image from '@/public/pic2.png';
 
 // Custom TracingBeam with website's colors
 const CustomTracingBeam = ({
@@ -18,98 +26,66 @@ const CustomTracingBeam = ({
     className?: string;
 }) => {
     const ref = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const [svgHeight, setSvgHeight] = useState(0);
+
+    // Set up the scroll tracking
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start start", "end start"],
     });
-    const contentRef = useRef<HTMLDivElement>(null);
-    const [svgHeight, setSvgHeight] = useState(0);
 
+    // Create smooth animations with useSpring
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    });
+
+    // Update SVG height whenever content changes
     useEffect(() => {
+        const updateHeight = () => {
+            if (contentRef.current) {
+                const newHeight = contentRef.current.offsetHeight;
+                setSvgHeight(newHeight);
+            }
+        };
+
+        // Initial update
+        updateHeight();
+
+        // Set up a resize observer to update height when window resizes
+        const resizeObserver = new ResizeObserver(updateHeight);
         if (contentRef.current) {
-            setSvgHeight(contentRef.current.offsetHeight);
+            resizeObserver.observe(contentRef.current);
         }
+
+        return () => {
+            if (contentRef.current) {
+                resizeObserver.unobserve(contentRef.current);
+            }
+        };
     }, []);
 
-    const y1 = useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]);
-    const y2 = useTransform(scrollYProgress, [0, 1], [50, svgHeight - 200]);
+    // Transform values for gradient animation
+    const y1 = useTransform(smoothProgress, [0, 0.8], [50, svgHeight]);
+    const y2 = useTransform(smoothProgress, [0, 1], [50, svgHeight - 200]);
 
-    return (
-        <motion.div
-            ref={ref}
-            className={cn("relative mx-auto h-full w-full max-w-4xl", className)}
-        >
-            <div className="absolute top-3 -left-4 md:-left-20 pointer-events-none">
-                <motion.div
-                    transition={{
-                        duration: 0.2,
-                        delay: 0.5,
-                    }}
-                    animate={{
-                        boxShadow:
-                            scrollYProgress.get() > 0
-                                ? "none"
-                                : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                    }}
-                    className="border-netural-200 ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm"
-                >
-                    <motion.div
-                        transition={{
-                            duration: 0.2,
-                            delay: 0.5,
-                        }}
-                        animate={{
-                            backgroundColor: scrollYProgress.get() > 0 ? "white" : "#f97636",
-                            borderColor: scrollYProgress.get() > 0 ? "white" : "#ff007a",
-                        }}
-                        className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
-                    />
-                </motion.div>
-                <svg
-                    viewBox={`0 0 20 ${svgHeight}`}
-                    width="20"
-                    height={svgHeight}
-                    className="ml-4 block"
-                    aria-hidden="true"
-                >
-                    <motion.path
-                        d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
-                        fill="none"
-                        stroke="#9091A0"
-                        strokeOpacity="0.16"
-                        transition={{
-                            duration: 10,
-                        }}
-                    ></motion.path>
-                    <motion.path
-                        d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
-                        fill="none"
-                        stroke="url(#gradient)"
-                        strokeWidth="1.25"
-                        className="motion-reduce:hidden"
-                        transition={{
-                            duration: 10,
-                        }}
-                    ></motion.path>
-                    <defs>
-                        <motion.linearGradient
-                            id="gradient"
-                            gradientUnits="userSpaceOnUse"
-                            x1="0"
-                            x2="0"
-                            y1={y1}
-                            y2={y2}
-                        >
-                            <stop stopColor="#ffbf00" stopOpacity="0"></stop>
-                            <stop stopColor="#ffbf00"></stop>
-                            <stop offset="0.325" stopColor="#f97636"></stop>
-                            <stop offset="1" stopColor="#ff007a" stopOpacity="0"></stop>
-                        </motion.linearGradient>
-                    </defs>
-                </svg>
-            </div>
-            <div ref={contentRef}>{children}</div>
-        </motion.div>
+    // Dynamic indicator style
+    const indicatorBackgroundColor = useTransform(
+        smoothProgress,
+        [0, 0.1],
+        ["#f97636", "white"]
+    );
+    const indicatorBorderColor = useTransform(
+        smoothProgress,
+        [0, 0.1],
+        ["#ff007a", "white"]
+    );
+    const indicatorBoxShadow = useTransform(
+        smoothProgress,
+        [0, 0.1],
+        ["rgba(0, 0, 0, 0.24) 0px 3px 8px", "none"]
     );
 
     return (
@@ -119,34 +95,23 @@ const CustomTracingBeam = ({
         >
             <div className="absolute top-3 -left-4 md:-left-20 pointer-events-none">
                 <motion.div
-                    transition={{
-                        duration: 0.2,
-                        delay: 0.5,
+                    className="border-neutral-200 ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border"
+                    style={{
+                        boxShadow: indicatorBoxShadow
                     }}
-                    animate={{
-                        boxShadow:
-                            scrollYProgress.get() > 0
-                                ? "none"
-                                : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                    }}
-                    className="border-netural-200 ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm"
                 >
                     <motion.div
-                        transition={{
-                            duration: 0.2,
-                            delay: 0.5,
+                        className="h-2 w-2 rounded-full border"
+                        style={{
+                            backgroundColor: indicatorBackgroundColor,
+                            borderColor: indicatorBorderColor
                         }}
-                        animate={{
-                            backgroundColor: scrollYProgress.get() > 0 ? "white" : "#f97636",
-                            borderColor: scrollYProgress.get() > 0 ? "white" : "#ff007a",
-                        }}
-                        className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
                     />
                 </motion.div>
                 <svg
-                    viewBox={`0 0 20 ${svgHeight}`}
+                    viewBox={`0 0 20 ${svgHeight || 1000}`}
                     width="20"
-                    height={svgHeight}
+                    height={svgHeight || 1000}
                     className="ml-4 block"
                     aria-hidden="true"
                 >
@@ -156,7 +121,7 @@ const CustomTracingBeam = ({
                         stroke="#9091A0"
                         strokeOpacity="0.16"
                         transition={{
-                            duration: 10,
+                            duration: 0.1,
                         }}
                     ></motion.path>
                     <motion.path
@@ -166,7 +131,7 @@ const CustomTracingBeam = ({
                         strokeWidth="1.25"
                         className="motion-reduce:hidden"
                         transition={{
-                            duration: 10,
+                            duration: 0.1,
                         }}
                     ></motion.path>
                     <defs>
@@ -238,30 +203,28 @@ export default function PortfolioPage() {
 
                             {/* Client Logo Section - Simplified */}
                             <div className="mb-12 text-center">
-                                <h2 className="text-xl font-semibold mb-4 text-gray-200">Trusted By</h2>
-                                <div className="flex justify-center items-center space-x-8">
-                                    <div className="w-28 h-14 bg-gray-800 rounded-md flex items-center justify-center">
+                                <h2 className="text-xl font-semibold mb-6 text-gray-200">Trusted By</h2>
+                                <div className="flex justify-center items-center space-x-12">
+                                    <div className="w-48 h-48 bg-gray-300 rounded-lg flex items-center justify-center p-4">
                                         <Image
-                                            src="/api/placeholder/100/50"
+                                            src={blueCanobyLogo}
                                             alt="Blue Canoby logo"
-                                            width={100}
-                                            height={50}
-                                            className="object-contain"
+                                            width={180}
+                                            height={180}
+                                            className="object-contain max-h-full"
                                         />
                                     </div>
-                                    <div className="w-28 h-14 bg-gray-800 rounded-md flex items-center justify-center">
+                                    <div className="w-48 h-48 bg-gray-300 rounded-lg flex items-center justify-center p-4">
                                         <Image
-                                            src="/api/placeholder/100/50"
-                                            alt="Client 2 logo"
-                                            width={100}
-                                            height={50}
-                                            className="object-contain"
+                                            src={frankeLogo}
+                                            alt="Franke logo"
+                                            width={180}
+                                            height={180}
+                                            className="object-contain max-h-full"
                                         />
                                     </div>
                                 </div>
                             </div>
-
-                            {/* This introduction has been expanded in the detailed case study above */}
 
                             {/* Blue Canoby */}
                             <div className="mb-16 relative z-20">
@@ -271,10 +234,10 @@ export default function PortfolioPage() {
 
                                 {/* First image below title */}
                                 <Image
-                                    src="/api/placeholder/1200/800"
+                                    src={discussImage}
                                     alt="Blue Canoby storefront"
-                                    height="800"
-                                    width="1200"
+                                    height={800}
+                                    width={1200}
                                     className="rounded-lg object-cover w-full h-auto mb-8"
                                 />
 
@@ -308,10 +271,10 @@ export default function PortfolioPage() {
 
                                 {/* Second image above Key Outcomes */}
                                 <Image
-                                    src="/api/placeholder/1200/800"
+                                    src={groupImage}
                                     alt="Blue Canoby products"
-                                    height="800"
-                                    width="1200"
+                                    height={800}
+                                    width={1200}
                                     className="rounded-lg object-cover w-full h-auto mb-8"
                                 />
 
@@ -335,7 +298,7 @@ export default function PortfolioPage() {
 
                                 <div className="bg-gray-900 p-8 rounded-lg mb-8">
                                     <p className="italic text-gray-300 text-lg mb-4">
-                                        "The team at BECOME transformed our business completely. Their strategic approach expanded our market reach while reinforcing our brand values of quality and expert consultation."
+                                        &quot;The team at BECOME transformed our business completely. Their strategic approach expanded our market reach while reinforcing our brand values of quality and expert consultation.&quot;
                                     </p>
                                     <div className="flex items-center">
                                         <div className="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
@@ -357,17 +320,17 @@ export default function PortfolioPage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                                     <Image
-                                        src="/api/placeholder/1200/800"
+                                        src={pic1Image}
                                         alt="Blumen-Café-Franke shop interior"
-                                        height="800"
-                                        width="1200"
+                                        height={800}
+                                        width={1200}
                                         className="rounded-lg object-cover w-full h-auto"
                                     />
                                     <Image
-                                        src="/api/placeholder/1200/800"
+                                        src={pic2Image}
                                         alt="Floral arrangement by Blumen-Café-Franke"
-                                        height="800"
-                                        width="1200"
+                                        height={800}
+                                        width={1200}
                                         className="rounded-lg object-cover w-full h-auto"
                                     />
                                 </div>
@@ -420,7 +383,7 @@ export default function PortfolioPage() {
 
                                 <div className="bg-gray-900 p-8 rounded-lg mb-8">
                                     <p className="italic text-gray-300 text-lg mb-4">
-                                        "BECOME helped us create a professional online presence that truly represents our brand. The templates they created save us time while ensuring our social media looks consistently beautiful. Now we can focus on creating arrangements instead of updating content."
+                                        &quot;BECOME helped us create a professional online presence that truly represents our brand. The templates they created save us time while ensuring our social media looks consistently beautiful. Now we can focus on creating arrangements instead of updating content.&quot;
                                     </p>
                                     <div className="flex items-center">
                                         <div className="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
@@ -432,14 +395,14 @@ export default function PortfolioPage() {
                                 </div>
                             </div>
 
-                            {/* These sections have been incorporated into the detailed case studies above */}
-
                             {/* Contact CTA - Concise */}
                             <div className="mt-16 mb-12 text-center relative z-20">
                                 <h3 className="text-2xl font-bold mb-4">Ready to transform your brand?</h3>
-                                <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-8 py-4 rounded-full hover:opacity-90 transition duration-300 text-lg font-semibold">
-                                    Contact Us
-                                </button>
+                                <Link href="/contact">
+                                    <button className="bg-gradient-to-r from-[#ffbf00] via-[#f97636] to-[#ff007a] text-white px-8 py-4 rounded-full hover:opacity-90 transition duration-300 text-lg font-semibold">
+                                        Contact Us
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </CustomTracingBeam>
