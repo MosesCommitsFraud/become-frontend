@@ -6,45 +6,48 @@ import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { SparklesCore } from '@/components/ui/sparkles'
 
-import moritz from '@/public/moritz.jpg';
-import felix from '@/public/felix.jpg';
-
 const teamMembers = [
     {
         name: 'Robin Kühn',
         title: 'Sales Manager',
         email: 'robin.kuehn@become-consulting.de',
-        image: '/placeholder.svg?height=400&width=300'
+        imageSrc: '/placeholder.svg?height=400&width=300',
+        isStaticImage: true
     },
     {
         name: 'Anna Kneidl',
         title: 'Project Manager',
         email: 'anna.kneidl@become-consulting.de',
-        image: '/placeholder.svg?height=400&width=300'
+        imageSrc: '/placeholder.svg?height=400&width=300',
+        isStaticImage: true
     },
     {
         name: 'Felix Bretz',
         title: 'Enterprise Architect',
         email: 'felix.bretz@become-consulting.de',
-        image: {felix}
+        imageSrc: '/felix.jpg',
+        isStaticImage: false
     },
     {
         name: 'Moritz Schäfer',
         title: 'Developer',
         email: 'moritz.schaefer@become-consulting.de',
-        image: {moritz}
+        imageSrc: '/moritz.jpg',
+        isStaticImage: false
     },
     {
         name: 'Laura Küchler',
         title: 'Customer Success Partner',
         email: 'laura.kuechler@become-consulting.de',
-        image: '/placeholder.svg?height=400&width=300'
+        imageSrc: '/placeholder.svg?height=400&width=300',
+        isStaticImage: true
     },
     {
         name: 'Tim Philipp',
         title: 'Portfolio Manager',
         email: 'tim.philipp@become-consulting.de',
-        image: '/placeholder.svg?height=400&width=300'
+        imageSrc: '/placeholder.svg?height=400&width=300',
+        isStaticImage: true
     }
 ]
 
@@ -115,9 +118,15 @@ export default function TeamPage() {
                             onMouseEnter={() => setHoveredMember(index)}
                             onMouseLeave={() => setHoveredMember(null)}
                         >
-                            <div className="w-full h-[400px] bg-gray-300 flex items-center justify-center text-black font-bold text-lg rounded-lg">
-                                300x400
+                            {/* Simple img tag approach for all images */}
+                            <div className="w-full h-[400px] overflow-hidden rounded-lg">
+                                <img
+                                    src={member.imageSrc}
+                                    alt={member.name}
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
+
                             <div
                                 className={`absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-end p-6 transition-opacity duration-300 rounded-lg ${
                                     hoveredMember === index ? 'opacity-100' : 'opacity-0'
