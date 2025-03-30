@@ -23,7 +23,7 @@ export default function Header() {
         '/impressum': 'dark',  // Example, can be light
         '/about': 'dark',  // Example, can be light
         '/packages': 'dark',  // Added packages page as dark
-        '/portfolio': 'dark',  // Added our-customers page as dark
+        '/our-customers': 'dark',  // Added our-customers page as dark
     };
 
     useEffect(() => {
