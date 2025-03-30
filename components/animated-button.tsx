@@ -21,7 +21,7 @@ export default function GetStartedButton() {
         '/impressum': 'dark',  // Example, can be light
         '/about': 'dark',  // Example, can be light
         '/packages': 'dark',  // Added packages page as dark
-        '/portfolio': 'dark',  // Added portfolio page as dark
+        '/portfolio': 'dark',  // Added our-customers page as dark
     };
 
     useEffect(() => {

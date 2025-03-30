@@ -23,7 +23,7 @@ export default function Header() {
         '/impressum': 'dark',  // Example, can be light
         '/about': 'dark',  // Example, can be light
         '/packages': 'dark',  // Added packages page as dark
-        '/portfolio': 'dark',  // Added portfolio page as dark
+        '/portfolio': 'dark',  // Added our-customers page as dark
     };
 
     useEffect(() => {
@@ -80,10 +80,10 @@ export default function Header() {
 
             <div className="flex items-center space-x-8">
                 <Link
-                    href="/portfolio"
+                    href="/our-customers"
                     className={`text-gray-800 ${pathname === '/' ? 'text-black' : isDarkBackground ? 'text-white' : 'text-gray-800'} hover:text-gray-500 transition transform hover:translate-y-0.5 hover:bg-opacity-90`}
                 >
-                    Portfolio
+                    Our Customers
                 </Link>
                 <Link
                     href="/packages"

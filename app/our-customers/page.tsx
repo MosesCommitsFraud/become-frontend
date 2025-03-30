@@ -161,7 +161,7 @@ function SetupHeaderStyles() {
     const pathname = usePathname();
 
     useEffect(() => {
-        // Add style override to ensure header text is white on portfolio page
+        // Add style override to ensure header text is white on our-customers page
         const style = document.createElement('style');
         style.innerHTML = `
       /* Override header styles for portfolio page */
@@ -179,7 +179,7 @@ function SetupHeaderStyles() {
     return null;
 }
 
-// We're no longer using the portfolio projects array as we've switched to detailed case studies
+// We're no longer using the our-customers projects array as we've switched to detailed case studies
 
 export default function PortfolioPage() {
     return (
