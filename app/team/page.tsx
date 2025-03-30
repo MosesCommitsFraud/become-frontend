@@ -11,7 +11,7 @@ const teamMembers = [
         name: 'Robin Kühn',
         title: 'Sales Manager',
         email: 'robin.kuehn@become-consulting.de',
-        imageSrc: '/placeholder.svg?height=400&width=300',
+        imageSrc: '/robin.jpg',
         isStaticImage: true
     },
     {
