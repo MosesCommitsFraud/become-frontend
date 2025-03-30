@@ -383,7 +383,7 @@ export default function PortfolioPage() {
 
                                 <div className="bg-gray-900 p-8 rounded-lg mb-8">
                                     <p className="italic text-gray-300 text-lg mb-4">
-                                        &quot;BECOME helped us create a professional online presence that truly represents our brand. The templates they created save us time while ensuring our social media looks consistently beautiful. Now we can focus on creating arrangements instead of updating content.&quot;
+                                        &quot;Für uns war dieser Workshop sehr hilfreich. Durch die kompetente Recherche und Ausführung der Studierenden fühlten wir uns sehr gut beraten. Unsere Unternehmensstruktur wurde professionell analysiert und unser Internet-Auftritt sehr positiv dargestellt. Die Ergebnisse der vorgestellten Lösungen haben uns sehr überrascht. Uns wurde alles sehr gut erläutert. Vorallem die als Muster erstellte Internetseite unseres Unternehmens hat uns sehr positiv gestimmt, wir waren begeistert! Wir fühlten uns von allen Studierenden verstanden und werden das erarbeitete Ergebnis definitiv umsetzen. &quot;
                                     </p>
                                     <div className="flex items-center">
                                         <div className="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
