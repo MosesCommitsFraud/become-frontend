@@ -6,6 +6,9 @@ import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { SparklesCore } from '@/components/ui/sparkles'
 
+import moritz from '@/public/moritz.jpg';
+import felix from '@/public/felix.jpg';
+
 const teamMembers = [
     {
         name: 'Robin Kühn',
@@ -23,13 +26,13 @@ const teamMembers = [
         name: 'Felix Bretz',
         title: 'Enterprise Architect',
         email: 'felix.bretz@become-consulting.de',
-        image: '/placeholder.svg?height=400&width=300'
+        image: {felix}
     },
     {
         name: 'Moritz Schäfer',
         title: 'Developer',
         email: 'moritz.schaefer@become-consulting.de',
-        image: '/placeholder.svg?height=400&width=300'
+        image: {moritz}
     },
     {
         name: 'Laura Küchler',
